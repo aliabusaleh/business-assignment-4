@@ -1,0 +1,35 @@
+[2022-12-16 20:46:12,134] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:46:11.675687+00:00 [queued]>
+[2022-12-16 20:46:12,143] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:46:11.675687+00:00 [queued]>
+[2022-12-16 20:46:12,143] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:46:12,143] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 20:46:12,143] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:46:12,156] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): extract_data> on 2022-12-16 20:46:11.675687+00:00
+[2022-12-16 20:46:12,161] {standard_task_runner.py:52} INFO - Started process 1695 to run task
+[2022-12-16 20:46:12,163] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'extract_data', 'manual__2022-12-16T20:46:11.675687+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/process_web_log.py', '--cfg-path', '/tmp/tmp765dn66y', '--error-file', '/tmp/tmpdsazmwc9']
+[2022-12-16 20:46:12,163] {standard_task_runner.py:80} INFO - Job 13: Subtask extract_data
+[2022-12-16 20:46:12,202] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:46:11.675687+00:00 [running]> on host 7a891c24faa4
+[2022-12-16 20:46:12,261] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=extract_data
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-16T20:46:11.675687+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-12-16T20:46:11.675687+00:00
+[2022-12-16 20:46:12,262] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-12-16 20:46:12,263] {subprocess.py:74} INFO - Running command: ['bash', '-c', "grep -o '[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}' echo $dir/the_folder/log.txt > extracted_data.txt"]
+[2022-12-16 20:46:12,271] {subprocess.py:85} INFO - Output:
+[2022-12-16 20:46:12,274] {subprocess.py:92} INFO - grep: echo: No such file or directory
+[2022-12-16 20:46:12,275] {subprocess.py:92} INFO - grep: /the_folder/log.txt: No such file or directory
+[2022-12-16 20:46:12,275] {subprocess.py:96} INFO - Command exited with return code 2
+[2022-12-16 20:46:12,286] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 195, in execute
+    f'Bash command failed. The command returned a non-zero exit code {result.exit_code}.'
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2022-12-16 20:46:12,290] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=process_web_log, task_id=extract_data, execution_date=20221216T204611, start_date=20221216T204612, end_date=20221216T204612
+[2022-12-16 20:46:12,298] {standard_task_runner.py:97} ERROR - Failed to execute job 13 for task extract_data (Bash command failed. The command returned a non-zero exit code 2.; 1695)
+[2022-12-16 20:46:12,335] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-12-16 20:46:12,370] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

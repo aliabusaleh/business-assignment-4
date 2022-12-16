@@ -1,0 +1,72 @@
+[2022-12-16 02:20:54,281] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:20:54,304] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:20:54,304] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:20:54,304] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 02:20:54,305] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:20:54,324] {taskinstance.py:1377} INFO - Executing <Task(_PythonDecoratedOperator): dummy_task_1> on 2022-12-15 00:00:00+00:00
+[2022-12-16 02:20:54,330] {standard_task_runner.py:52} INFO - Started process 97 to run task
+[2022-12-16 02:20:54,334] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'dummy_task_1', 'scheduled__2022-12-15T00:00:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/test1.py', '--cfg-path', '/tmp/tmpe_e5klxl', '--error-file', '/tmp/tmpqhlbsdae']
+[2022-12-16 02:20:54,335] {standard_task_runner.py:80} INFO - Job 13: Subtask dummy_task_1
+[2022-12-16 02:20:54,391] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [running]> on host 411836952c8f
+[2022-12-16 02:20:54,475] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=dummy_task_1
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-15T00:00:00+00:00
+[2022-12-16 02:20:54,477] {logging_mixin.py:115} INFO - inside dummy task!
+[2022-12-16 02:20:54,477] {python.py:173} INFO - Done. Returned value was: None
+[2022-12-16 02:20:54,493] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=dummy_task_1, execution_date=20221215T000000, start_date=20221216T022054, end_date=20221216T022054
+[2022-12-16 02:20:54,550] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-12-16 02:20:54,590] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-12-16 02:28:00,776] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:28:00,823] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:28:00,827] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:28:00,838] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 02:28:00,839] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:28:00,879] {taskinstance.py:1377} INFO - Executing <Task(_PythonDecoratedOperator): dummy_task_1> on 2022-12-15 00:00:00+00:00
+[2022-12-16 02:28:00,884] {standard_task_runner.py:52} INFO - Started process 81 to run task
+[2022-12-16 02:28:00,890] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'dummy_task_1', 'scheduled__2022-12-15T00:00:00+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/test1.py', '--cfg-path', '/tmp/tmp8ix5nsuz', '--error-file', '/tmp/tmpaaoc41l0']
+[2022-12-16 02:28:00,890] {standard_task_runner.py:80} INFO - Job 21: Subtask dummy_task_1
+[2022-12-16 02:28:01,019] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [running]> on host 411836952c8f
+[2022-12-16 02:28:01,174] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=dummy_task_1
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-15T00:00:00+00:00
+[2022-12-16 02:28:01,176] {test1.py:47} INFO - inside dummy task!
+[2022-12-16 02:28:01,177] {python.py:173} INFO - Done. Returned value was: None
+[2022-12-16 02:28:01,211] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=dummy_task_1, execution_date=20221215T000000, start_date=20221216T022800, end_date=20221216T022801
+[2022-12-16 02:28:01,275] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-12-16 02:28:01,357] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-12-16 02:30:03,874] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:30:03,888] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [queued]>
+[2022-12-16 02:30:03,888] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:30:03,888] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 02:30:03,888] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:30:03,902] {taskinstance.py:1377} INFO - Executing <Task(_PythonDecoratedOperator): dummy_task_1> on 2022-12-15 00:00:00+00:00
+[2022-12-16 02:30:03,907] {standard_task_runner.py:52} INFO - Started process 193 to run task
+[2022-12-16 02:30:03,913] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'dummy_task_1', 'scheduled__2022-12-15T00:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/test1.py', '--cfg-path', '/tmp/tmpjgj0le5t', '--error-file', '/tmp/tmphfojwdsi']
+[2022-12-16 02:30:03,913] {standard_task_runner.py:80} INFO - Job 27: Subtask dummy_task_1
+[2022-12-16 02:30:03,975] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.dummy_task_1 scheduled__2022-12-15T00:00:00+00:00 [running]> on host 411836952c8f
+[2022-12-16 02:30:04,041] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=dummy_task_1
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-15T00:00:00+00:00
+[2022-12-16 02:30:04,042] {test1.py:47} WARNING - inside dummy task!
+[2022-12-16 02:30:04,043] {python.py:173} INFO - Done. Returned value was: None
+[2022-12-16 02:30:04,056] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=dummy_task_1, execution_date=20221215T000000, start_date=20221216T023003, end_date=20221216T023004
+[2022-12-16 02:30:04,085] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-12-16 02:30:04,119] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

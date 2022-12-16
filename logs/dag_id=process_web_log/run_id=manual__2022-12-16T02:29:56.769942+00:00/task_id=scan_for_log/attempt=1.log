@@ -1,0 +1,25 @@
+[2022-12-16 02:29:58,997] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T02:29:56.769942+00:00 [queued]>
+[2022-12-16 02:29:59,008] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T02:29:56.769942+00:00 [queued]>
+[2022-12-16 02:29:59,008] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:29:59,008] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 02:29:59,009] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 02:29:59,021] {taskinstance.py:1377} INFO - Executing <Task(_PythonDecoratedOperator): scan_for_log> on 2022-12-16 02:29:56.769942+00:00
+[2022-12-16 02:29:59,025] {standard_task_runner.py:52} INFO - Started process 182 to run task
+[2022-12-16 02:29:59,030] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'scan_for_log', 'manual__2022-12-16T02:29:56.769942+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/test1.py', '--cfg-path', '/tmp/tmp9ue49egm', '--error-file', '/tmp/tmp3tdjtr32']
+[2022-12-16 02:29:59,031] {standard_task_runner.py:80} INFO - Job 26: Subtask scan_for_log
+[2022-12-16 02:29:59,085] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T02:29:56.769942+00:00 [running]> on host 411836952c8f
+[2022-12-16 02:29:59,161] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=scan_for_log
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-16T02:29:56.769942+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-12-16T02:29:56.769942+00:00
+[2022-12-16 02:29:59,162] {test1.py:53} WARNING - scanning a folder 
+[2022-12-16 02:29:59,163] {test1.py:55} WARNING - scanning a folder finished
+[2022-12-16 02:29:59,163] {python.py:173} INFO - Done. Returned value was: None
+[2022-12-16 02:29:59,177] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=scan_for_log, execution_date=20221216T022956, start_date=20221216T022958, end_date=20221216T022959
+[2022-12-16 02:29:59,204] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-12-16 02:29:59,233] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

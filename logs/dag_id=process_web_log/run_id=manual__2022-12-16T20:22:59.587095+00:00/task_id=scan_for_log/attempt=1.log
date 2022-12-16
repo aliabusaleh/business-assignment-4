@@ -1,0 +1,36 @@
+[2022-12-16 20:22:59,933] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T20:22:59.587095+00:00 [queued]>
+[2022-12-16 20:22:59,943] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T20:22:59.587095+00:00 [queued]>
+[2022-12-16 20:22:59,943] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:22:59,943] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 20:22:59,943] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:22:59,957] {taskinstance.py:1377} INFO - Executing <Task(FileSensor): scan_for_log> on 2022-12-16 20:22:59.587095+00:00
+[2022-12-16 20:22:59,960] {standard_task_runner.py:52} INFO - Started process 584 to run task
+[2022-12-16 20:22:59,962] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'scan_for_log', 'manual__2022-12-16T20:22:59.587095+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/process_web_log.py', '--cfg-path', '/tmp/tmphw8wp5xz', '--error-file', '/tmp/tmpo6iobqlp']
+[2022-12-16 20:22:59,962] {standard_task_runner.py:80} INFO - Job 6: Subtask scan_for_log
+[2022-12-16 20:23:00,003] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.scan_for_log manual__2022-12-16T20:22:59.587095+00:00 [running]> on host 7a891c24faa4
+[2022-12-16 20:23:00,064] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=scan_for_log
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-16T20:22:59.587095+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-12-16T20:22:59.587095+00:00
+[2022-12-16 20:23:00,080] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/base.py", line 277, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/sensors/filesystem.py", line 55, in poke
+    hook = FSHook(self.fs_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/filesystem.py", line 38, in __init__
+    conn = self.get_connection(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `fs_default` isn't defined
+[2022-12-16 20:23:00,083] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=process_web_log, task_id=scan_for_log, execution_date=20221216T202259, start_date=20221216T202259, end_date=20221216T202300
+[2022-12-16 20:23:00,091] {standard_task_runner.py:97} ERROR - Failed to execute job 6 for task scan_for_log (The conn_id `fs_default` isn't defined; 584)
+[2022-12-16 20:23:00,135] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-12-16 20:23:00,174] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

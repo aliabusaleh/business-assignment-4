@@ -1,0 +1,28 @@
+[2022-12-16 20:57:26,748] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:57:25.854890+00:00 [queued]>
+[2022-12-16 20:57:26,758] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:57:25.854890+00:00 [queued]>
+[2022-12-16 20:57:26,758] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:57:26,758] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-12-16 20:57:26,758] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-16 20:57:26,775] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): extract_data> on 2022-12-16 20:57:25.854890+00:00
+[2022-12-16 20:57:26,780] {standard_task_runner.py:52} INFO - Started process 347 to run task
+[2022-12-16 20:57:26,782] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'process_web_log', 'extract_data', 'manual__2022-12-16T20:57:25.854890+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/process_web_log.py', '--cfg-path', '/tmp/tmpyjx0xlhl', '--error-file', '/tmp/tmpnzugg4oq']
+[2022-12-16 20:57:26,783] {standard_task_runner.py:80} INFO - Job 18: Subtask extract_data
+[2022-12-16 20:57:26,828] {task_command.py:369} INFO - Running <TaskInstance: process_web_log.extract_data manual__2022-12-16T20:57:25.854890+00:00 [running]> on host 4c8fd3751af1
+[2022-12-16 20:57:26,893] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=process_web_log
+AIRFLOW_CTX_TASK_ID=extract_data
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-16T20:57:25.854890+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-12-16T20:57:25.854890+00:00
+[2022-12-16 20:57:26,894] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-12-16 20:57:26,894] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'echo $(ls)']
+[2022-12-16 20:57:26,904] {subprocess.py:85} INFO - Output:
+[2022-12-16 20:57:26,907] {subprocess.py:92} INFO - 
+[2022-12-16 20:57:26,907] {subprocess.py:96} INFO - Command exited with return code 0
+[2022-12-16 20:57:26,933] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=extract_data, execution_date=20221216T205725, start_date=20221216T205726, end_date=20221216T205726
+[2022-12-16 20:57:26,956] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-12-16 20:57:26,991] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
