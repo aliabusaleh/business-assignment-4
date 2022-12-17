@@ -1,6 +1,11 @@
-# Data Science and Business Workflows: Assignment #4 - Workflows with Apache Airflow
+# Assignment #4 - Workflows with Apache Airflow
+## Data Science and Business Workflows
+## EMJMD Big Data Management and Analytics, ULB
+
 [Abusaleh, Ali](github.com/aliabusaleh)
+
 [Lorencio Abril, Jose Antonio](github.com/lorenc1o)
+
 # Prerequisites
 [source of documentation](https://docs.docker.com/engine/install/ubuntu/)
 * Remove any old versions of docker or libraries
