@@ -4,8 +4,6 @@ import logging
 
 from airflow.models import DAG
 from airflow.operators.bash_operator import BashOperator
-from airflow.operators.dummy_operator import DummyOperator
-from airflow.operators.python_operator import PythonOperator
 from airflow.contrib.sensors.file_sensor import FileSensor
 
 
@@ -26,10 +24,11 @@ dag = DAG('process_web_log',
           default_args=default_args,
           catchup=False)
 
-# scanForLog = FileSensor(
-#    task_id='scan_for_log',
-#    filepath='./the_folder/log.txt',
-#    dag=dag)
+scanForLog = FileSensor(
+   task_id='scan_for_log',
+   filepath='/opt/airflow/dags/the_log/log.txt',
+   fs_conn_id='default',
+   dag=dag)
 
 extract_logs = BashOperator(
     task_id='extract_data',
@@ -51,4 +50,4 @@ zip_data = BashOperator(
 
 
 
-extract_logs >> filter_logs >> zip_data
+scanForLog >> extract_logs >> filter_logs >> zip_data

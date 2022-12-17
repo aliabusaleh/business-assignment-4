@@ -73,5 +73,42 @@ $ docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(ge
 ``` 
 * Now, initialize the image 
 ```
-docker compose up airflow-init
+$ docker compose up airflow-init
 ```
+
+## Troubleshooting 
+ 
+ * <b> if first task failed with error </b>
+    ```
+    The conn_id `default` isn't defined;
+    ```
+* <b>Solution</b>
+    * Access Airflow terminal 
+    ```
+    $ sudo docker exec -it assignemnt_4_airflow-webserver_1  bash
+    ```
+    * check connections you have
+    ```
+    $ airflow connections list
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+    FutureWarning,
+    No data found
+    ```
+    
+    * if results is <b>No data found</b>:
+        * go to Airflow webserver
+        * go to Admin -> connections -> add connection
+            * Connection Id:  default
+            * Connection Type: file (Path)
+            * others are empty
+        * save 
+        * check again connection from Airflow terminal
+    * if results has different <b>conn_id</b>
+        * replace the <b>fs_conn_id </b> with connection id in the code and rerun it 
+        ```
+        scanForLog = FileSensor(
+        task_id='scan_for_log',
+        filepath='/opt/airflow/dags/the_log/log.txt',
+        fs_conn_id='new_conn_id', # Change this 
+        dag=dag)
+        ```
