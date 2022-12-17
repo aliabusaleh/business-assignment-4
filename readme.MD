@@ -63,15 +63,15 @@ $ sudo mkdir ./dags ./logs ./plugins
 ```
 $ touch .env
 ```
-* add AIRFLOW_UID to env. file 
+* Add AIRFLOW_UID to env. file 
 ```
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 ```
-* Before running it make sure you have debian bullseyes by running this 
+* Before running the docker image, make sure you have debian bullseyes by running this 
 ```
 $ docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'
 ``` 
-* Initialize the image 
+* Now, initialize the image 
 ```
 docker compose up airflow-init
 ```
