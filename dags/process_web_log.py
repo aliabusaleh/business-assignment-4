@@ -13,7 +13,7 @@ default_args = {
     'schedule_interval': '@daily',
     'start_date': datetime(2022, 12, 15),
     'catchup': False,
-    'tags': ['Assignemt']
+    'tags': ['Assigment']
 }
 
 dag = DAG('process_web_log',
