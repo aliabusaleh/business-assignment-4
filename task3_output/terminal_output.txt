@@ -1,0 +1,230 @@
+-- show dag tree
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli tasks list process_web_log  --tree
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    <Task(FileSensor): scan_for_log>
+        <Task(BashOperator): extract_data>
+            <Task(BashOperator): transform_data>
+                <Task(BashOperator): load_data>
+    
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+-- running only first task 
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli tasks test  process_web_log scan_for_log  2023-01-01
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    [2023-01-04 00:16:29,742] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py:128 DeprecationWarning: Calling `DAG.create_dagrun()` without an explicit data interval is deprecated
+    [2023-01-04 00:16:29,806] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log __airflow_temporary_run_2023-01-04T00:16:29.765035+00:00__ [None]>
+    [2023-01-04 00:16:29,812] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.scan_for_log __airflow_temporary_run_2023-01-04T00:16:29.765035+00:00__ [None]>
+    [2023-01-04 00:16:29,812] {taskinstance.py:1356} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:16:29,812] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+    [2023-01-04 00:16:29,812] {taskinstance.py:1358} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:16:29,813] {taskinstance.py:1377} INFO - Executing <Task(FileSensor): scan_for_log> on 2023-01-01T00:00:00+00:00
+    [2023-01-04 00:16:29,858] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=scan_for_log
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=__airflow_temporary_run_2023-01-04T00:16:29.765035+00:00__
+    [2023-01-04 00:16:29,862] {base.py:68} INFO - Using connection ID 'default' for task execution.
+    [2023-01-04 00:16:29,862] {filesystem.py:58} INFO - Poking for file /opt/airflow/dags/the_log/log.txt
+    [2023-01-04 00:16:29,862] {filesystem.py:63} INFO - Found File /opt/airflow/dags/the_log/log.txt last modified: 20221215234217
+    [2023-01-04 00:16:29,862] {base.py:301} INFO - Success criteria met. Exiting.
+    [2023-01-04 00:16:29,863] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=scan_for_log, execution_date=20230101T000000, start_date=, end_date=20230104T001629
+    
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+
+--running second task only
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli tasks test  process_web_log extract_data  2023-01-01
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    [2023-01-04 00:20:36,391] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py:128 DeprecationWarning: Calling `DAG.create_dagrun()` without an explicit data interval is deprecated
+    [2023-01-04 00:20:36,445] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data __airflow_temporary_run_2023-01-04T00:20:36.411700+00:00__ [None]>
+    [2023-01-04 00:20:36,450] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.extract_data __airflow_temporary_run_2023-01-04T00:20:36.411700+00:00__ [None]>
+    [2023-01-04 00:20:36,450] {taskinstance.py:1356} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:20:36,451] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+    [2023-01-04 00:20:36,451] {taskinstance.py:1358} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:20:36,452] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): extract_data> on 2023-01-01T00:00:00+00:00
+    [2023-01-04 00:20:36,484] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=extract_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=__airflow_temporary_run_2023-01-04T00:20:36.411700+00:00__
+    [2023-01-04 00:20:36,484] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:20:36,485] {subprocess.py:74} INFO - Running command: ['bash', '-c', "grep -o '[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}' /opt/airflow/dags/the_log/log.txt > /opt/airflow/dags/the_log/extracted_data.txt"]
+    [2023-01-04 00:20:36,488] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:20:36,567] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:20:36,575] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=extract_data, execution_date=20230101T000000, start_date=, end_date=20230104T002036
+    
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+-- running third task only
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli tasks test  process_web_log transform_data  2023-01-01
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    [2023-01-04 00:23:54,949] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py:128 DeprecationWarning: Calling `DAG.create_dagrun()` without an explicit data interval is deprecated
+    [2023-01-04 00:23:55,004] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.transform_data __airflow_temporary_run_2023-01-04T00:23:54.970733+00:00__ [None]>
+    [2023-01-04 00:23:55,009] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.transform_data __airflow_temporary_run_2023-01-04T00:23:54.970733+00:00__ [None]>
+    [2023-01-04 00:23:55,009] {taskinstance.py:1356} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:23:55,009] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+    [2023-01-04 00:23:55,009] {taskinstance.py:1358} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:23:55,010] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): transform_data> on 2023-01-01T00:00:00+00:00
+    [2023-01-04 00:23:55,042] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=transform_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=__airflow_temporary_run_2023-01-04T00:23:54.970733+00:00__
+    [2023-01-04 00:23:55,042] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:23:55,043] {subprocess.py:74} INFO - Running command: ['bash', '-c', "awk '!/198.46.149.143/' /opt/airflow/dags/the_log/extracted_data.txt > /opt/airflow/dags/the_log/log_filterd.txt"]
+    [2023-01-04 00:23:55,046] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:23:55,050] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:23:55,057] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=transform_data, execution_date=20230101T000000, start_date=, end_date=20230104T002355
+        
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+-- running Fourth part only 
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli tasks test  process_web_log load_data  2023-01-01
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    [2023-01-04 00:24:51,194] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py:128 DeprecationWarning: Calling `DAG.create_dagrun()` without an explicit data interval is deprecated
+    [2023-01-04 00:24:51,250] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.load_data __airflow_temporary_run_2023-01-04T00:24:51.216062+00:00__ [None]>
+    [2023-01-04 00:24:51,255] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: process_web_log.load_data __airflow_temporary_run_2023-01-04T00:24:51.216062+00:00__ [None]>
+    [2023-01-04 00:24:51,256] {taskinstance.py:1356} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:24:51,256] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+    [2023-01-04 00:24:51,256] {taskinstance.py:1358} INFO - 
+    --------------------------------------------------------------------------------
+    [2023-01-04 00:24:51,257] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): load_data> on 2023-01-01T00:00:00+00:00
+    [2023-01-04 00:24:51,290] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=load_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=__airflow_temporary_run_2023-01-04T00:24:51.216062+00:00__
+    [2023-01-04 00:24:51,290] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:24:51,291] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'tar -czvf /opt/airflow/dags/the_log/weblog.tar /opt/airflow/dags/the_log/log_filterd.txt']
+    [2023-01-04 00:24:51,294] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:24:51,296] {subprocess.py:92} INFO - tar: Removing leading `/' from member names
+    [2023-01-04 00:24:51,297] {subprocess.py:92} INFO - /opt/airflow/dags/the_log/log_filterd.txt
+    [2023-01-04 00:24:51,302] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:24:51,310] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=load_data, execution_date=20230101T000000, start_date=, end_date=20230104T002451
+    
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+-- running all tasks (full DAG)
+
+
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ sudo docker-compose run airflow-cli dags test process_web_log 2023-01-01
+    Creating assignemnt_4_airflow-cli_run ... done
+    /home/airflow/.local/lib/python3.7/site-packages/airflow/configuration.py:339: FutureWarning: The auth_backends setting in [api] has had airflow.api.auth.backend.session added in the running config, which is needed by the UI. Please update your config before Apache Airflow 3.0.
+      FutureWarning,
+    [2023-01-04 00:27:54,381] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags
+    [2023-01-04 00:27:54,473] {base_executor.py:91} INFO - Adding to queue: ['<TaskInstance: process_web_log.scan_for_log backfill__2023-01-01T00:00:00+00:00 [queued]>']
+    [2023-01-04 00:27:59,480] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=scan_for_log
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=backfill__2023-01-01T00:00:00+00:00
+    [2023-01-04 00:27:59,483] {base.py:68} INFO - Using connection ID 'default' for task execution.
+    [2023-01-04 00:27:59,485] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=scan_for_log, execution_date=20230101T000000, start_date=20230104T002754, end_date=20230104T002759
+    [2023-01-04 00:27:59,506] {backfill_job.py:378} INFO - [backfill progress] | finished run 0 of 1 | tasks waiting: 3 | succeeded: 1 | running: 0 | failed: 0 | skipped: 0 | deadlocked: 0 | not ready: 3
+    [2023-01-04 00:27:59,527] {base_executor.py:91} INFO - Adding to queue: ['<TaskInstance: process_web_log.extract_data backfill__2023-01-01T00:00:00+00:00 [queued]>']
+    [2023-01-04 00:28:04,469] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=extract_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=backfill__2023-01-01T00:00:00+00:00
+    [2023-01-04 00:28:04,470] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:28:04,471] {subprocess.py:74} INFO - Running command: ['bash', '-c', "grep -o '[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}' /opt/airflow/dags/the_log/log.txt > /opt/airflow/dags/the_log/extracted_data.txt"]
+    [2023-01-04 00:28:04,479] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:28:04,572] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:28:04,583] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=extract_data, execution_date=20230101T000000, start_date=20230104T002754, end_date=20230104T002804
+    [2023-01-04 00:28:04,595] {backfill_job.py:378} INFO - [backfill progress] | finished run 0 of 1 | tasks waiting: 2 | succeeded: 2 | running: 0 | failed: 0 | skipped: 0 | deadlocked: 0 | not ready: 2
+    [2023-01-04 00:28:04,610] {base_executor.py:91} INFO - Adding to queue: ['<TaskInstance: process_web_log.transform_data backfill__2023-01-01T00:00:00+00:00 [queued]>']
+    [2023-01-04 00:28:09,469] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=transform_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=backfill__2023-01-01T00:00:00+00:00
+    [2023-01-04 00:28:09,469] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:28:09,469] {subprocess.py:74} INFO - Running command: ['bash', '-c', "awk '!/198.46.149.143/' /opt/airflow/dags/the_log/extracted_data.txt > /opt/airflow/dags/the_log/log_filterd.txt"]
+    [2023-01-04 00:28:09,475] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:28:09,478] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:28:09,490] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=transform_data, execution_date=20230101T000000, start_date=20230104T002754, end_date=20230104T002809
+    [2023-01-04 00:28:09,506] {backfill_job.py:378} INFO - [backfill progress] | finished run 0 of 1 | tasks waiting: 1 | succeeded: 3 | running: 0 | failed: 0 | skipped: 0 | deadlocked: 0 | not ready: 1
+    [2023-01-04 00:28:09,521] {base_executor.py:91} INFO - Adding to queue: ['<TaskInstance: process_web_log.load_data backfill__2023-01-01T00:00:00+00:00 [queued]>']
+    [2023-01-04 00:28:14,460] {taskinstance.py:1571} INFO - Exporting the following env vars:
+    AIRFLOW_CTX_DAG_OWNER=airflow
+    AIRFLOW_CTX_DAG_ID=process_web_log
+    AIRFLOW_CTX_TASK_ID=load_data
+    AIRFLOW_CTX_EXECUTION_DATE=2023-01-01T00:00:00+00:00
+    AIRFLOW_CTX_TRY_NUMBER=1
+    AIRFLOW_CTX_DAG_RUN_ID=backfill__2023-01-01T00:00:00+00:00
+    [2023-01-04 00:28:14,461] {subprocess.py:62} INFO - Tmp dir root location: 
+     /tmp
+    [2023-01-04 00:28:14,461] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'tar -czvf /opt/airflow/dags/the_log/weblog.tar /opt/airflow/dags/the_log/log_filterd.txt']
+    [2023-01-04 00:28:14,467] {subprocess.py:85} INFO - Output:
+    [2023-01-04 00:28:14,470] {subprocess.py:92} INFO - tar: Removing leading `/' from member names
+    [2023-01-04 00:28:14,470] {subprocess.py:92} INFO - /opt/airflow/dags/the_log/log_filterd.txt
+    [2023-01-04 00:28:14,477] {subprocess.py:96} INFO - Command exited with return code 0
+    [2023-01-04 00:28:14,491] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=process_web_log, task_id=load_data, execution_date=20230101T000000, start_date=20230104T002754, end_date=20230104T002814
+    [2023-01-04 00:28:14,509] {dagrun.py:562} INFO - Marking run <DagRun process_web_log @ 2023-01-01T00:00:00+00:00: backfill__2023-01-01T00:00:00+00:00, externally triggered: False> successful
+    [2023-01-04 00:28:14,510] {dagrun.py:622} INFO - DagRun Finished: dag_id=process_web_log, execution_date=2023-01-01T00:00:00+00:00, run_id=backfill__2023-01-01T00:00:00+00:00, run_start_date=2023-01-04 00:27:54.425613+00:00, run_end_date=2023-01-04 00:28:14.510501+00:00, run_duration=20.084888, state=success, external_trigger=False, run_type=backfill, data_interval_start=2023-01-01T00:00:00+00:00, data_interval_end=2023-01-02T00:00:00+00:00, dag_hash=None
+    [2023-01-04 00:28:14,511] {backfill_job.py:378} INFO - [backfill progress] | finished run 1 of 1 | tasks waiting: 0 | succeeded: 4 | running: 0 | failed: 0 | skipped: 0 | deadlocked: 0 | not ready: 0
+    [2023-01-04 00:28:14,514] {backfill_job.py:879} INFO - Backfill done. Exiting.
+aliabusaleh@aliabusaleh:~/Downloads/assignemnt_4$ 
+
+
+
+
+
+
+
+
+
+
+
+
