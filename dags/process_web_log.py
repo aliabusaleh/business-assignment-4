@@ -33,12 +33,12 @@ extract_logs = BashOperator(
 
 filter_logs = BashOperator(
     task_id='transform_data',
-    bash_command="awk '!/198.46.149.143/' /opt/airflow/dags/the_log/extracted_data.txt > /opt/airflow/dags/the_log/log_filterd.txt",
+    bash_command="awk '!/198.46.149.143/' /opt/airflow/dags/the_log/extracted_data.txt > /opt/airflow/dags/the_log/transformed_data.txt",
     dag=dag)
 
 zip_data = BashOperator(
     task_id='load_data',
-    bash_command="tar -czvf /opt/airflow/dags/the_log/weblog.tar /opt/airflow/dags/the_log/log_filterd.txt",
+    bash_command="tar -czvf /opt/airflow/dags/the_log/weblog.tar /opt/airflow/dags/the_log/transformed_data.txt",
     dag=dag)
 
 scanForLog >> extract_logs >> filter_logs >> zip_data
